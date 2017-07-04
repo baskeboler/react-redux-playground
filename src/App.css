@@ -29,18 +29,6 @@
   border: solid 4px pink;
 }
 
-.todo-list li {
-  font-size: 1.3em;
-  font-weight: bold;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  list-style-type: none;
-}
-.todo-list li label {
-
-  transition: all 1s ease;
-}
-.todo-list li.completed label {
-  text-decoration-style: line-through;
-  color: grey;
-  text-decoration: red line-through;
+.labels-container, .labels-container .label {
+  margin: .1em;
 }
