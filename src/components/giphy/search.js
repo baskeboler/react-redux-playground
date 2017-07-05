@@ -14,23 +14,7 @@ import Masonry from 'react-masonry-component';
 import { selectGiphy, showModal } from '../../actions/actions';
 import { connect } from 'react-redux';
 import './giphy.css';
-
-const apikey = '87a96e8dbf7942ce98892e1217596286';
-
-const baseUrl = 'https://api.giphy.com/v1/gifs/search';
-
-const queryUrl = query => `${baseUrl}?api_key=${apikey}&q=${query}`;
-
-const searchGiphy = q =>
-  fetch(queryUrl(q))
-    .then(res => res.json())
-    .then(res => {
-      console.log('i got a response');
-      return res;
-    })
-    .catch(err => {
-      console.log('there was an error: ', err.message);
-    });
+import { searchGiphy } from '../../services';
 
 export class Giphy extends React.Component {
   constructor(props) {
@@ -50,6 +34,12 @@ export class Giphy extends React.Component {
       <Masonry updateOnEachImageLoad={true}>
         {imgs.map((image, i) =>
           <Thumbnail
+            style={{
+              display: 'block',
+              backgroundColor: 'yellow',
+              width: image.images.fixed_width_small.width,
+              height: image.images.fixed_width_small.height
+            }}
             src={image.images.fixed_width_small.url}
             onClick={() => this.props.select(image)}
             key={i}
