@@ -66,26 +66,26 @@ window.onload = () => {
 
           <Route
             exact
-            location={location}
+            // location={location}
             path="/"
             component={Todos}
             // key={location.key}
           />
           <Route
             path="/profile"
-            location={location}
+            // location={location}
             // key={location.key}
             component={Profile}
           />
           <Route
             path="/giphy"
-            location={location}
+            // location={location}
             // key={location.key}
             component={Giphy}
           />
           <Route
             path="/rates"
-            location={location}
+            // location={location}
             // key={location.key}
             component={Currency}
           />
