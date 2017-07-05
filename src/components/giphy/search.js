@@ -36,11 +36,11 @@ export class Giphy extends React.Component {
           <Thumbnail
             style={{
               display: 'block',
-              backgroundColor: 'yellow',
-              width: image.images.fixed_width_small.width,
-              height: image.images.fixed_width_small.height
+              backgroundColor: 'rgba(0,0,0,.1)',
+              width: image.images.fixed_width.width,
+              height: image.images.fixed_width.height
             }}
-            src={image.images.fixed_width_small.url}
+            src={image.images.fixed_width.url}
             onClick={() => this.props.select(image)}
             key={i}
           />
