@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "fetch": "^1.1.0",
+    "gh-pages": "^1.0.0",
     "history": "^4.6.3",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
@@ -29,12 +30,12 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "@storybook/react": "^3.1.7",
     "husky": "^0.14.2",
     "jshint": "^2.9.5",
     "lint-staged": "^4.0.0",
     "prettier": "^1.5.2",
-    "react-scripts": "1.0.8",
-    "@storybook/react": "^3.1.7"
+    "react-scripts": "1.0.8"
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
@@ -42,8 +43,11 @@
       "git add"
     ]
   },
+  "homepage": "https://baskeboler.github.io/react-redux-playground",
   "scripts": {
     "precommit": "lint-staged",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

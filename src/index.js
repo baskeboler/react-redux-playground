@@ -45,7 +45,10 @@ window.onload = () => {
   const location = browserHistory.location;
   const root = (
     <Provider store={store}>
-      <ConnectedRouter history={browserHistory}>
+      <ConnectedRouter
+        basename={process.env.PUBLIC_URL}
+        history={browserHistory}
+      >
         <div>
           <Modals />
           <DevTools />
