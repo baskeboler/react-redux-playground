@@ -27,14 +27,14 @@ TodoList.propTypes = {
     toggle: PropTypes.func
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         remove: (id) => dispatch(removeTodo(id)),
         toggle: (id) => dispatch(toggleComplete(id))
     };
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         todos: getTodos(state)
     };

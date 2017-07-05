@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
+import "./index.css";
 import React from "react";
 import {render} from "react-dom";
 import registerServiceWorker from "./registerServiceWorker";
@@ -9,10 +10,9 @@ import {Provider} from "react-redux";
 import DevTools from "./devtools";
 import {BrowserRouter as Router, NavLink} from "react-router-dom";
 import {Route} from "react-router";
-
 import Todos from "./views/todos";
 import Profile from "./views/profile";
-import {store} from "./store";
+import store from "./store";
 import {CSSTransitionGroup} from "react-transition-group";
 import Giphy from "./components/giphy/search";
 import Modals from "./modals";
@@ -21,8 +21,17 @@ store.dispatch(Actions.addTodo({text: 'Darle de comer al perro'}));
 store.dispatch(Actions.addTodo({text: 'Hacer un montón de cosas'}));
 store.dispatch(Actions.addTag('ramones'));
 store.dispatch(Actions.addTag('bullets'));
+store.dispatch(Actions.createPost({
+    title: 'puto',
+    body: 'laconchatumadre',
+    userId: 1
+}));
+store.dispatch(Actions.listPost()).then(() => {
+    store.dispatch(Actions.listPostComments(1))
 
+})
 window.onload = () => {
+    const location = window.location;
     const root = (
         <Provider store={store}>
             <Router >
@@ -42,12 +51,16 @@ window.onload = () => {
                     </ul>
                     <CSSTransitionGroup 
                         transitionName="fade"
-                        transitionEnterTimeout={300}
-                        transitionLeaveTimeout={300}>
+                        transitionAppear={true}
+                        transitionEnter={true}
+                        transitionLeave={true}
+                        transitionAppearTimeout={500}
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={500}>
 
-                        <Route exact path="/" component={Todos}/>
-                        <Route path="/profile" component={Profile}/>
-                        <Route path="/giphy" component={Giphy}></Route>
+                        <Route exact location={location} path="/" component={Todos} key={location.key}/>
+                        <Route path="/profile" location={location} key={location.key} component={Profile}/>
+                        <Route path="/giphy" location={location} key={location.key} component={Giphy} />
                     </CSSTransitionGroup>
 
                 </div>

@@ -3,3 +3,27 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.fade-enter {
+  opacity: .1;
+  transition: opacity .5s ease-in;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+}
+
+.fade-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+.fade-leave.fade-leave-active {
+  opacity: .1;
+}
+
+.fade-appear {
+  opacity: .1;
+  transition: opacity .5s ease;
+}
+.fade-appear.fade-appear-active {
+  opacity: 1;
+}
