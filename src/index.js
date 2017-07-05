@@ -15,6 +15,7 @@ import Profile from './views/profile';
 import store from './store';
 import Giphy from './components/giphy/search';
 import Modals from './modals';
+import Currency from './views/currency';
 
 /*
  * Dispatch some actions for fun.
@@ -23,6 +24,7 @@ store.dispatch(Actions.addTag('ramones'));
 store.dispatch(Actions.addTag('bullets'));
 store.dispatch(Actions.addTodo({ text: 'Darle de comer al perro' }));
 store.dispatch(Actions.addTodo({ text: 'Hacer un montón de cosas' }));
+store.dispatch(Actions.requestExchangeRates());
 store.dispatch(
   Actions.createPost({
     title: 'puto',
@@ -56,6 +58,9 @@ window.onload = () => {
             <li>
               <NavLink to="/giphy">Giphy</NavLink>
             </li>
+            <li>
+              <NavLink to="/rates">Exchange Rates</NavLink>
+            </li>
           </ul>
 
           <Route
@@ -76,6 +81,12 @@ window.onload = () => {
             location={location}
             key={location.key}
             component={Giphy}
+          />
+          <Route
+            path="/rates"
+            location={location}
+            key={location.key}
+            component={Currency}
           />
         </div>
       </Router>
