@@ -33,7 +33,8 @@
     "jshint": "^2.9.5",
     "lint-staged": "^4.0.0",
     "prettier": "^1.5.2",
-    "react-scripts": "1.0.8"
+    "react-scripts": "1.0.8",
+    "@storybook/react": "^3.1.7"
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
@@ -46,7 +47,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "config": {
     "jshint": {

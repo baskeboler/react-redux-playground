@@ -5,14 +5,14 @@ import React from 'react';
 import { render } from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import * as Actions from './actions/actions';
-
+import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import DevTools from './devtools';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import { Route } from 'react-router';
 import Todos from './views/todos';
 import Profile from './views/profile';
-import store from './store';
+import store, { history as browserHistory } from './store';
 import Giphy from './components/giphy/search';
 import Modals from './modals';
 import Currency from './views/currency';
@@ -39,12 +39,13 @@ store.dispatch(Actions.listPost()).then(() => {
   store.dispatch(Actions.listPostComments(1));
 });
 // ok, thats enough
+// const history = syncHistoryWithStore(browserHistory, store);
 
 window.onload = () => {
-  const location = window.location;
+  const location = browserHistory.location;
   const root = (
     <Provider store={store}>
-      <Router history={window.history}>
+      <ConnectedRouter history={browserHistory}>
         <div>
           <Modals />
           <DevTools />
@@ -68,28 +69,28 @@ window.onload = () => {
             location={location}
             path="/"
             component={Todos}
-            key={location.key}
+            // key={location.key}
           />
           <Route
             path="/profile"
             location={location}
-            key={location.key}
+            // key={location.key}
             component={Profile}
           />
           <Route
             path="/giphy"
             location={location}
-            key={location.key}
+            // key={location.key}
             component={Giphy}
           />
           <Route
             path="/rates"
             location={location}
-            key={location.key}
+            // key={location.key}
             component={Currency}
           />
         </div>
-      </Router>
+      </ConnectedRouter>
     </Provider>
   );
   render(root, document.getElementById('root'));
