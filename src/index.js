@@ -16,6 +16,7 @@ import store, { history as browserHistory } from './store';
 import Giphy from './components/giphy/search';
 import Modals from './modals';
 import Currency from './views/currency';
+import { Navbar, Nav, NavItem, NavbarBrand } from 'react-bootstrap';
 
 /*
  * Dispatch some actions for fun.
@@ -41,61 +42,66 @@ store.dispatch(Actions.listPost()).then(() => {
 // ok, thats enough
 // const history = syncHistoryWithStore(browserHistory, store);
 
+const root = (
+  <Provider store={store}>
+    <ConnectedRouter basename={process.env.PUBLIC_URL} history={browserHistory}>
+      <div>
+        <Modals />
+        <DevTools />
+        <Navbar>
+          <Navbar.Header>
+            <NavbarBrand>
+              <span>react-redux-playground</span>
+            </NavbarBrand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem>
+              <NavLink to="/">Todos</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="profile">Profile</NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink to="giphy">Giphy</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="rates">Exchange Rates</NavLink>
+            </NavItem>
+          </Nav>
+        </Navbar>
+
+        <Route
+          exact
+          // location={location}
+          path="/"
+          component={Todos}
+          // key={location.key}
+        />
+        <Route
+          path="/profile"
+          // location={location}
+          // key={location.key}
+          component={Profile}
+        />
+        <Route
+          path="/giphy"
+          // location={location}
+          // key={location.key}
+          component={Giphy}
+        />
+        <Route
+          path="/rates"
+          // location={location}
+          // key={location.key}
+          component={Currency}
+        />
+      </div>
+    </ConnectedRouter>
+  </Provider>
+);
 window.onload = () => {
   const location = browserHistory.location;
-  const root = (
-    <Provider store={store}>
-      <ConnectedRouter
-        basename={process.env.PUBLIC_URL}
-        history={browserHistory}
-      >
-        <div>
-          <Modals />
-          <DevTools />
-          <ul>
-            <li>
-              <NavLink to="/">Todos</NavLink>
-            </li>
-            <li>
-              <NavLink to="/profile">Profile</NavLink>
-            </li>
-            <li>
-              <NavLink to="/giphy">Giphy</NavLink>
-            </li>
-            <li>
-              <NavLink to="/rates">Exchange Rates</NavLink>
-            </li>
-          </ul>
-
-          <Route
-            exact
-            // location={location}
-            path="/"
-            component={Todos}
-            // key={location.key}
-          />
-          <Route
-            path="/profile"
-            // location={location}
-            // key={location.key}
-            component={Profile}
-          />
-          <Route
-            path="/giphy"
-            // location={location}
-            // key={location.key}
-            component={Giphy}
-          />
-          <Route
-            path="/rates"
-            // location={location}
-            // key={location.key}
-            component={Currency}
-          />
-        </div>
-      </ConnectedRouter>
-    </Provider>
-  );
   render(root, document.getElementById('root'));
 };
 
